@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile
 class DeployController(private val deployService:DeployService) {
 
     @PostMapping("/")
-    fun deploy(jars:MultipartFile, basePackages: Array<String>):String {
+    fun deploy(jars:MultipartFile, basePackages: Array<String>, subAppName: String):String {
 
         deployService.deployByBasePackages(listOf(jars), listOf(*basePackages))
 

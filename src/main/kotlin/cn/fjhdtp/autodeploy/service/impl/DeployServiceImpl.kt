@@ -34,10 +34,10 @@ class DeployServiceImpl(@Autowired private val manager: ApplicationContextManage
         manager.registerApplication("test", applicationContext, classLoader, *classes.toTypedArray())
     }
 
-    override fun deployByBasePackages(jars: List<MultipartFile>, basePackages: List<String>) {
+    override fun deployByBasePackages(jars: List<MultipartFile>, basePackages: List<String>, subAppName: String) {
         val paths = saveJars(jars)
         val classLoader = URLClassLoader(paths.toTypedArray(), this.javaClass.classLoader)
-        manager.registerApplication("test", applicationContext, classLoader, *basePackages.toTypedArray())
+        manager.registerApplication(subAppName, applicationContext, classLoader, *basePackages.toTypedArray())
     }
 
     /**
